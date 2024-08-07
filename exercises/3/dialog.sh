@@ -1,40 +1,41 @@
 #!/bin/bash
-
-
-get_integer_input() {
-    local prompt=$1
-    local input
+Get_integer_input() {
+    local Prompt=$1
+    local Input
 
     while true; do
-        input=$(dialog --inputbox "$prompt" 10 30 2>&1 >/dev/tty)
-         echo "$input"
+        Input=$(dialog --inputbox "$Prompt" 10 30 3>&1 1>&2 2>&3)
+         echo "$Input"
              return
-
     done
 }
-a=$(get_integer_input "Enter an integer for a:")
-b=$(get_integer_input "Enter an integer for b:")
-operation=$(get_integer_input "Enter an operation (+ - * /)")
+
+a=$(Get_integer_input "Enter an integer for a:")
+b=$(Get_integer_input "Enter an integer for b:")
+operation=$(Get_integer_input "Enter an operation (+ - * /)")
+
 clear
+
 echo "You entered a = $a"
 echo "You entered b = $b"
 echo "You entered c = $operation"
 
-sum=$(echo "$a + $b" | bc)
-difference=$(echo "$a - $b" | bc)
-product=$(echo "$a * $b" | bc)
-quotient=$(echo "scale=4; $a / $b" | bc)
+Sum=$(echo "$a + $b" | bc)
+Difference=$(echo "$a - $b" | bc)
+Product=$(echo "$a * $b" | bc)
+Quotient=$(echo "scale=4; $a / $b" | bc)
+
 case "$operation" in
     "+")
-        echo "Sum: $a + $b = $sum"
+        echo "Sum: $a + $b = $Sum"
         ;;
     "-")
-        echo "Difference: $a - $b = $difference"
+        echo "Difference: $a - $b = $Difference"
         ;;
     "*")
-        echo "Product: $a * $b = $product"
+        echo "Product: $a * $b = $Product"
         ;;
     "/")
-        echo "Quotient: $a / $b = $quotient"
+        echo "Quotient: $a / $b = $Quotient"
         ;;
 esac
