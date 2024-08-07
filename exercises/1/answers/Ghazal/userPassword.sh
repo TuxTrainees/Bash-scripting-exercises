@@ -6,8 +6,8 @@ read -s PASSWORD
 echo
 
 if (groups "$USER_NAME" ) | (grep -qw 'wheel' || grep -qw 'sudo');then
-   echo "contents of /root:"
-   ls /root
+        echo "contents of /root:"
+	ls /root
 fi
 
 

@@ -5,3 +5,5 @@ for file in $(ls -a $HOME); do
         stat /home/ghazal/"$file"
         echo
 done
+
+
