@@ -1,16 +1,20 @@
 #!/bin/bash
-Get_integer_input() {
-    local Prompt=$1
-    local Input
 
-        Input=$(dialog --inputbox "$Prompt" 10 30 3>&1 1>&2 2>&3)
-         echo "$Input"
-             #return
+get_input() {
+  local prompt="$1"
+  local temp_file="/tmp/dialog_input.tmp"
+
+  dialog --inputbox "$prompt" 10 30 2> "$temp_file"
+
+  local input=$(cat "$temp_file")
+  rm -f "$temp_file"
+
+  echo "$input"
 }
 
-a=$(Get_integer_input "Enter an integer for a:")
-b=$(Get_integer_input "Enter an integer for b:")
-operation=$(Get_integer_input "Enter an operation (+ - * /)")
+a=$(get_input "Enter the first number:")
+b=$(get_input "Enter the second number:")
+operation=$(get_input "Enter the operator (+, -, *, /):")
 
 clear
 
